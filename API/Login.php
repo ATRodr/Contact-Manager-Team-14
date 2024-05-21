@@ -1,4 +1,4 @@
-// The following PHP code is Dr. Leinecker's code from his introductory LAMP Stack assignment for his COP 4331 class. 
+
 <?php
 
 	$inData = getRequestInfo();
@@ -7,7 +7,7 @@
 	$firstName = "";
 	$lastName = "";
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
+	$conn = new mysqli("localhost", "Master", "Password123", "ContactManager");	
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
@@ -19,6 +19,7 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
+		// keeps grabbing new arrays until it reaches null
 		if( $row = $result->fetch_assoc()  )
 		{
 			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );

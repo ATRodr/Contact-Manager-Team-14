@@ -14,12 +14,12 @@
     }
     else
     {
-      $stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
-  		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
-      $stmt->execute();
-  		$stmt->close();
-  		$conn->close();
-  		returnWithError("");
+        $stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
+    	$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+        $stmt->execute();
+    	$stmt->close();
+    	$conn->close();
+    	returnWithError("");
     }
 
     function getRequestInfo()

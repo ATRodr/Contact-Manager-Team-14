@@ -1,36 +1,41 @@
 <?php
-  $inData = json_decode(file_get_contents('php://input'), true);
 
-  $firstName = $inData["firstName"];
-  $lastName = $inData["lastName"];
-  $phone = $inData["phone"];
-  $email = $inData["email"];
-  $userID = $inData["userID"];
+    $inData = getRequestInfo();
 
-  $conn = new mysqli("localhost", "Master", "Password123", "ContactManager");
-  if ($conn->connect_error)
-  {
-    returnWithError($conn->connect_error);
-  }
-  else
-  {
-    $stmt = $conn->prepare("INSERT into Users (firstName, lastName, phone, email, userID) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userID);
-    $stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
-  }
+    $firstName = $inData["firstName"];
+    $lastName = $inData["lastName"];
+    $login = $inData["login"];
+    $password = $inData["password"];
 
-  function sendResultInfoAsJson($obj)
-  {
-    header('Content-type: application/json');
-    echo $obj;
-  }
+    $conn = new mysqli("localhost", "Master", "Password123", "ContactManager");
+    if ($conn->connect_error)
+    {
+      returnWithError($conn->connect_error);
+    }
+    else
+    {
+      $stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
+  		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+      $stmt->execute();
+  		$stmt->close();
+  		$conn->close();
+  		returnWithError("");
+    }
 
-  function returnWithError($err)
-  {
-    $retValue = '{"error":"' . $err . '"}';
-    sendResultInfoAsJson($retValue);
-  }
- ?>
+    function getRequestInfo()
+    {
+      return json_decode(file_get_contents('php://input'), true);
+    }
+
+    function sendResultInfoAsJson($obj)
+    {
+      header('Content-type: application/json');
+      echo $obj;
+    }
+
+    function returnWithError($err)
+    {
+      $retValue = '{"error":"' . $err . '"}';
+      sendResultInfoAsJson($retValue);
+    }
+?>

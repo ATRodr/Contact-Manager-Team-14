@@ -5,23 +5,6 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function login()
-{
-    try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			
-			window.location.href = "index.html";
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("loginResult").innerHTML = err.message;
-	}
-}
-
 function doLogin()
 {
 	userId = 0;

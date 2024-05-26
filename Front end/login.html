@@ -1,33 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Citronaut Contacts</title>
-	
-	<!--favicon-->
-	<link rel = "icon" type = "image/png" href="images/citronaut_head.png">
-	<!--Uses styles.css-->
-	<link rel="stylesheet" href="css/styles.css">
+	<head>
+		<title>Citronaut Contacts</title>
+		<link rel = "icon" type = "image/png" href="images/citronaut_head.png">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/styles.css">
+    	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	</head>
 
-	<!--below is copied from Leny index.html-->
-	<!--Not sure what is does exaclty-->
-	<link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-</head>
-<body>
-
-<!--<h1 id="title">Citronaut Contacts</h1>-->
-<img src = "images/Title.png"
-alt = "Citronauts"
-class = "center"
-height = "200"> 
-
-<div id="loginDiv">
-	<span id="inner-title">PLEASE LOG IN</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="doLoginButton" class="buttons" onclick="doLogin();"> Login </button>
-	<span id="loginResult"></span>
-</div>
-
-</body>
+	<body>
+		<img src = "images/Title.png" alt = "Citronauts" class = "center" height = "200"> 
+		<div id="loginDiv">
+		<a href = "register.html">
+			<button type="button" id="registerButton" class="buttons"> Register </button>
+		</a>
+		<span id="inner-title">PLEASE LOG IN</span>
+		<input type="text" id="loginName" placeholder="Username" /><br />
+		<input type="password" id="loginPassword" placeholder="Password"/><br />
+		<button type="button" id="doLoginButton" class="buttons" onclick="doLogin();"> Login </button>
+		<span id="loginResult"></span>
+		</div>
+	</body>
 </html>

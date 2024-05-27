@@ -5,7 +5,8 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function doLogin() {
+function doLogin() 
+{
 	userId = 0;
 	firstName = "";
 	lastName = "";
@@ -13,7 +14,7 @@ function doLogin() {
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
 
-	document.getElementById("loginResult").innerHTML = "";
+	document.getElementById("response").innerHTML = "";
 
 	let tmp = { login: login, password: password };
 	let jsonPayload = JSON.stringify(tmp);
@@ -30,7 +31,7 @@ function doLogin() {
 				userId = jsonObject.id;
 
 				if (userId < 1) {
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					document.getElementById("response").innerHTML = "Invalid username or password";
 					return;
 				}
 
@@ -55,23 +56,29 @@ function doRegister() {
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
 
-	if (firstName == "") {
-
+	if (firstName == "") 
+	{
+		document.getElementById("response").innerHTML = "Please input a first name";
+		return;
 	}
 
-	if (lastName == "") {
-
+	if (lastName == "") 
+	{
+		document.getElementById("response").innerHTML = "Please input a last name";
+		return;
 	}
 
-	if (login == "") {
-
+	if (login == "") 
+	{
+		document.getElementById("registerResult").innerHTML = "Please input a login";
+		return;
 	}
 
-	if (password == "") {
-
+	if (password == "") 
+	{
+		document.getElementById("registerResult").innerHTML = "Please input a password";
+		return;
 	}
-
-	document.getElementById("registerResult").innerHTML = "";
 
 	let tmp = { firstName: firstName, lastName: lastName, login: login, password: password };
 	let jsonPayload = JSON.stringify(tmp);
@@ -81,10 +88,13 @@ function doRegister() {
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try {
+	try 
+	{
 		xhr.send(jsonPayload);
+		document.getElementById("response").innerHTML = "Account has been successfully registered";
 	}
-	catch (err) {
-		document.getElementById("registerResult").innerHTML = err.message;
+	catch (err) 
+	{
+		document.getElementById("response").innerHTML = err.message;
 	}
 }

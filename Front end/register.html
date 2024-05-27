@@ -1,26 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>Citronaut Contacts</title>
-		<link rel = "icon" type = "image/png" href="images/citronaut_head.png">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> Citronaut Contacts </title>
+		<link rel="icon" type="image/png" href="images/Icon.png">
+		<link rel="stylesheet" href="css/styles.css">
 		<script type="text/javascript" src="js/code.js"></script>
-    	<link href="css/styles.css" rel="stylesheet">	
-    	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	</head>
 
 	<body>
-		<img src = "images/Title.png" alt = "Citronauts" class = "center" height = "200">
-		<div id="registerDiv">
-			<a href = "login.html">
-            	<button type="button" id="loginButton" class="buttons"> Login </button>
+		<div class="banner">
+			<a href="index.html">
+				<img src="images/Logo.png" alt="Citronauts logo" class="logo">
 			</a>
-			<span id="inner-title">PLEASE REGISTER</span>
-            <input type="text" id="firstName" placeholder="First Name" /><br />
-            <input type="text" id="lastName" placeholder="Last Name" /><br />
+		
+			<a href="login.html">
+				<button type="button" id="loginButton" class="loginButton">Log in</button>
+			</a>
+		
+			<a href="register.html">
+				<button type="button" id="registerButton" class="registerButton">Register</button>
+			</a>
+		</div>
+
+		<div class="registerScreen">
+			<span id="title">Register</span>
+			<input type="text" id="firstName" placeholder="First name" /><br />
+			<input type="text" id="lastName" placeholder="Last name" /><br />
 			<input type="text" id="loginName" placeholder="Username" /><br />
-			<input type="password" id="loginPassword" placeholder="Password"/><br />
+			<input type="password" id="loginPassword" placeholder="Password" /><br />
+			<span id="response"></span>
 			<button type="button" id="doRegisterButton" class="buttons" onclick="doRegister();"> Register </button>
-			<span id="registerResult"></span>
 		</div>
 	</body>
 </html>

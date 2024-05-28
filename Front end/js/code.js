@@ -88,6 +88,7 @@ function readCookie()
 
 function doRegister() 
 {
+	document.getElementById("response").style.color = "#ff0008";
 	userId = 0;
 	let firstName = document.getElementById("firstName").value;
 	let lastName = document.getElementById("lastName").value;
@@ -129,6 +130,7 @@ function doRegister()
 	try 
 	{
 		xhr.send(jsonPayload);
+		document.getElementById("response").style.color = "green";
 		document.getElementById("response").innerHTML = "Account has been successfully registered";
 	}
 	catch (err) 
@@ -163,19 +165,28 @@ function displayAddContacts()
 	document.getElementById("lastName").type = "show";
 	document.getElementById("phone").type = "show";
 	document.getElementById("email").type = "show";
+	document.getElementById("addContact").style.display = "block";
 }
 
 function addContacts()
 {
-	let newColor = document.getElementById("contactText").value;
-	document.getElementById("contactAddResult").innerHTML = "";
+	let firstName = document.getElementById("firstName").value;
+	let lastName = document.getElementById("lastName").value;
+	let phone = document.getElementById("phone").value;
+	let email = document.getElementById("email").value;
 
-	//^\d{3}\-\d{3}\-\d{4}$ phone number regex
+	if(!/^\d{3}\-\d{3}\-\d{4}$/.test(phone))
+	{
+		return;
+	}
 
-	///^[^\s@]+@[^\s@]+\.[^\s@]+$/ email regex
+	if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+	{
+		return;
+	}
 
 
-	let tmp = {color:newColor,userId,userId};
+	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContacts.' + extension;
@@ -212,43 +223,43 @@ function showContacts()
 	document.getElementById("lastName").type = "hidden";
 	document.getElementById("phone").type = "hidden";
 	document.getElementById("email").type = "hidden";
+	document.getElementById("addContact").style.display = "none";
 }
 
 function searchContacts() 
 {
-	let srch = document.getElementById("searchContact").value;
-	document.getElementById("searchResult").innerHTML = "";
+    let srch = document.getElementById("searchContact").value;
+    document.getElementById("searchResult").innerHTML = "";
 
-	let contactList = "";
+    let contactList = "";
 
-	let tmp = { search: srch, userId: userId };
-	let jsonPayload = JSON.stringify(tmp);
+    let tmp = { search: srch, userId: userId };
+    let jsonPayload = JSON.stringify(tmp);
 
-	let url = urlBase + '/SearchContacts.' + extension;
+    let url = urlBase + '/SearchContacts.' + extension;
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try {
-		xhr.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("searchResult").innerHTML = "Contact(s) have been retrieved";
-				let jsonObject = JSON.parse(xhr.responseText);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("searchResult").innerHTML = "Contact(s) have been retrieved";
+                let jsonObject = JSON.parse(xhr.responseText);
 
-				for (let i = 0; i < jsonObject.results.length; i++) {
-					contactList += jsonObject.results[i];
-					if (i < jsonObject.results.length - 1) {
-						contactList += "<br />\r\n";
-					}
-				}
+                for (let i = 0; i < jsonObject.results.length; i++) {
+                    contactList += jsonObject.results[i];
+                    if (i < jsonObject.results.length - 1) {
+                        contactList += "<br />\r\n";
+                    }
+                }
 
-				document.getElementsByTagName("p")[0].innerHTML = contactList;
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch (err) {
-		document.getElementById("contactSearchResult").innerHTML = err.message;
-	}
-
+                document.getElementsByTagName("p")[0].innerHTML = contactList;
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch (err) {
+        document.getElementById("searchResult").innerHTML = err.message;
+    }
 }

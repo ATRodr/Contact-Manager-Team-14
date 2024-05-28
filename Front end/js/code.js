@@ -38,7 +38,7 @@ function doLogin()
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
-				//saveCookie();
+				saveCookie();
 
 				window.location.href = "contacts.html";
 			}
@@ -51,7 +51,7 @@ function doLogin()
 
 }
 
-/*function saveCookie() 
+function saveCookie() 
 {
 	let minutes = 20;
 	let date = new Date();
@@ -84,7 +84,7 @@ function readCookie()
 	else {
 		//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
-}*/
+}
 
 function doRegister() 
 {

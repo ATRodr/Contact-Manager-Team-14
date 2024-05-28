@@ -1,5 +1,4 @@
-body 
-{
+body {
     margin: 0;
     padding: 0;
     background-color: #b0d5e8;
@@ -10,24 +9,22 @@ body
     background-repeat: no-repeat;
 }
 
-.banner 
-{
+.banner {
     margin: 0;
     padding: 0;
     height: 90px;
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-.logo 
-{
+.logo {
     position: fixed;
     left: 25px;
     width: 210px;
     height: 90px;
 }
 
-.loginButton 
-{
+.loginButton {
+    text-align: center;
     position: fixed;
     top: 9px;
     right: 335px;
@@ -40,15 +37,14 @@ body
     width: 250px;
 }
 
-.loginButton:hover 
-{
+.loginButton:hover {
     border-color: #0071e2e4;
     color: #FFFFFF;
     opacity: 50%;
 }
 
-.registerButton 
-{
+.registerButton {
+    text-align: center;
     position: fixed;
     top: 9px;
     right: 15px;
@@ -61,31 +57,35 @@ body
     color: white;
 }
 
-.registerButton:hover 
-{
+.registerButton:hover {
     background-color: #0071e2c5;
     color: #FFFFFF;
     opacity: 50%;
 }
 
-.loginScreen 
-{
+.loginScreen {
     margin: 8% auto;
     text-align: center;
     width: 50%;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-.registerScreen 
-{
+.registerScreen {
     margin: 4% auto;
     text-align: center;
     width: 50%;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-.buttons 
-{
+.contactsScreen {
+    margin-top: 90px;
+    text-align: center;
+    height: fit-content;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.buttons {
     margin-bottom: 3%;
     width: 30%;
     color: white;
@@ -94,35 +94,33 @@ body
     background-color: black;
 }
 
-.buttons:hover 
-{
+.buttons:hover {
     color: rgba(255, 255, 255, 0.7);
     border-color: rgba(255, 255, 255, 0.7);
 }
 
-#firstName 
-{
+#firstName {
     font-size: 2vw;
 }
 
-#lastName 
-{
+#lastName {
     font-size: 2vw;
 }
 
-#loginName 
-{
+#loginName {
     font-size: 2vw;
 }
 
-#loginPassword 
-{
+#loginPassword {
+    font-size: 2vw;
+}
+
+#searchContact {
     font-size: 2vw;
 }
 
 input[type="text"],
-input[type="password"] 
-{
+input[type="password"] {
     border-radius: 25px;
     text-align: center;
     width: 35%;
@@ -130,8 +128,7 @@ input[type="password"]
     font-family: 'Ubuntu', sans-serif;
 }
 
-#title 
-{
+#title {
     display: inline-block;
     font-size: 92px;
     font-weight: bolder;
@@ -143,8 +140,7 @@ input[type="password"]
     color: #ffffff;
 }
 
-#response 
-{
+#response {
     display: inline-block;
     font-size: 1.5em;
     margin-bottom: 3%;
@@ -154,25 +150,31 @@ input[type="password"]
     color: #ff0008;
 }
 
-#userName 
-{
-    display: inline-block;
-    width: 80%;
-    margin-left: 10%;
-    text-align: center;
-}
-
-#logoutButton 
-{
-    width: 20%;
-    margin-left: 40%;
-}
-
-select 
-{
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
+#greeting {
+    position: fixed;
+    margin-left: 35px;
+    margin-top: 15px;
+    font-size: 50px;
     font-family: 'Ubuntu', sans-serif;
+    color: white;
+}
+
+.logoutButton {
+    text-align: center;
+    position: fixed;
+    top: 9px;
+    right: 15px;
+    font-size: 50px;
+    width: 250px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #e24400;
+    border-width: 6px;
+    border-color: #e24400;
+    color: white;
+}
+
+.logoutButton:hover {
+    background-color: #e24400ca;
+    color: #FFFFFF;
+    opacity: 50%;
 }

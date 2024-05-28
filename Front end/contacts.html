@@ -7,21 +7,28 @@
         <link rel="icon" type="image/png" href="images/Icon.png">
         <link rel="stylesheet" href="css/styles.css">
         <script type="text/javascript" src="js/code.js"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () 
+            {
+                readCookie();
+            }, false);
+        </script>
     </head>
 
-    <body>
+    <body onload="loadName()">
         <div class="banner">
-            <a href="index.html">
-                <img src="images/Logo.png" alt="Citronauts logo" class="logo">
-            </a>
-    
-            <a href="login.html">
-                <button type="button" id="loginButton" class="loginButton">Log in</button>
-            </a>
-    
-            <a href="register.html">
-                <button type="button" id="registerButton" class="registerButton">Register</button>
-            </a>
+            <span id="greeting"></span>
+            <button type="button" class="logoutButton" onclick="doLogout();">Log out</button>
+        </div>
+
+        <div class="contactsScreen">
+            <span id="title">Contacts</span>
+            <input type="text" id="searchContact" placeholder="Search" /><br />
+            <button type="button" id="doSearch" class="buttons" onclick="searchContacts();"> Search </button>
+            <button type="button" id="doAdd" class="buttons" onclick=";"> Add </button>
+            <span id="contactSearchResult"></span>
+            <p id="contactList">
+            </p><br /><br />
         </div>
     </body>
 </html>

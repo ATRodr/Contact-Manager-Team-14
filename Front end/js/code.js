@@ -24,13 +24,17 @@ function doLogin()
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try {
-		xhr.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
+	try 
+	{
+		xhr.onreadystatechange = function () 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
 				let jsonObject = JSON.parse(xhr.responseText);
 				userId = jsonObject.id;
 
-				if (userId < 1) {
+				if (userId < 1) 
+				{
 					document.getElementById("response").innerHTML = "Invalid username or password";
 					return;
 				}
@@ -46,7 +50,7 @@ function doLogin()
 		xhr.send(jsonPayload);
 	}
 	catch (err) {
-		document.getElementById("loginResult").innerHTML = err.message;
+		document.getElementById("response").innerHTML = err.message;
 	}
 
 }
@@ -64,32 +68,34 @@ function readCookie()
 	userId = -1;
 	let data = document.cookie;
 	let splits = data.split(",");
-	for (var i = 0; i < splits.length; i++) {
+	for (var i = 0; i < splits.length; i++) 
+	{
 		let thisOne = splits[i].trim();
 		let tokens = thisOne.split("=");
-		if (tokens[0] == "firstName") {
+		if (tokens[0] == "firstName") 
+		{
 			firstName = tokens[1];
 		}
-		else if (tokens[0] == "lastName") {
+		else if (tokens[0] == "lastName") 
+		{
 			lastName = tokens[1];
 		}
-		else if (tokens[0] == "userId") {
+		else if (tokens[0] == "userId") 
+		{
 			userId = parseInt(tokens[1].trim());
 		}
 	}
 
-	if (userId < 0) {
+	if (userId < 0) 
+	{
 		window.location.href = "index.html";
-	}
-	else {
-		//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
 function doRegister() 
 {
+	document.getElementById("response").innerHTML = "";
 	document.getElementById("response").style.color = "#ff0008";
-	userId = 0;
 	let firstName = document.getElementById("firstName").value;
 	let lastName = document.getElementById("lastName").value;
 	let login = document.getElementById("loginName").value;
@@ -129,9 +135,23 @@ function doRegister()
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try 
 	{
+		xhr.onreadystatechange = function () 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse(xhr.responseText);
+				if (jsonObject.error === "")
+				{
+					document.getElementById("response").style.color = "green";
+					document.getElementById("response").innerHTML = "Account successfully created"
+				}
+				else
+				{
+					document.getElementById("response").innerHTML = jsonObject.error;
+				}
+			}
+		}
 		xhr.send(jsonPayload);
-		document.getElementById("response").style.color = "green";
-		document.getElementById("response").innerHTML = "Account has been successfully registered";
 	}
 	catch (err) 
 	{
@@ -155,7 +175,6 @@ function doLogout()
 
 function displayAddContacts()
 {
-	//document.getElementById("").innerHTML = "YOU CLICKED ME!";
 	document.getElementById("searchContact").style.display = "none";
 	document.getElementById("displayAddContacts").style.display = "none";
 	document.getElementById("doSearch").style.display = "none";
@@ -233,7 +252,7 @@ function searchContacts()
 
     let contactList = "";
 
-    let tmp = { search: srch, userId: userId };
+    let tmp = { search: srch, userID: userId };
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/SearchContacts.' + extension;

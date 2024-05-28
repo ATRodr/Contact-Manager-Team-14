@@ -24,17 +24,13 @@ function doLogin()
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try 
-	{
-		xhr.onreadystatechange = function () 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-				{
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
 				let jsonObject = JSON.parse(xhr.responseText);
 				userId = jsonObject.id;
 
-				if (userId < 1) 
-					{
+				if (userId < 1) {
 					document.getElementById("response").innerHTML = "Invalid username or password";
 					return;
 				}
@@ -42,21 +38,20 @@ function doLogin()
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
-				saveCookie();
+				//saveCookie();
 
 				window.location.href = "contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
-	catch (err) 
-	{
+	catch (err) {
 		document.getElementById("loginResult").innerHTML = err.message;
 	}
 
 }
 
-function saveCookie() 
+/*function saveCookie() 
 {
 	let minutes = 20;
 	let date = new Date();
@@ -89,7 +84,7 @@ function readCookie()
 	else {
 		//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
-}
+}*/
 
 function doRegister() 
 {
@@ -156,19 +151,34 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-function addContact()
+function displayAddContacts()
 {
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+	//document.getElementById("").innerHTML = "YOU CLICKED ME!";
+	document.getElementById("searchContact").style.display = "none";
+	document.getElementById("displayAddContacts").style.display = "none";
+	document.getElementById("doSearch").style.display = "none";
+
+	document.getElementById("doContacts").style.display = "block";
+	document.getElementById("firstName").type = "show";
+	document.getElementById("lastName").type = "show";
+	document.getElementById("phone").type = "show";
+	document.getElementById("email").type = "show";
+}
+
+function addContacts()
+{
+	let newColor = document.getElementById("contactText").value;
+	document.getElementById("contactAddResult").innerHTML = "";
 
 	//^\d{3}\-\d{3}\-\d{4}$ phone number regex
 
 	///^[^\s@]+@[^\s@]+\.[^\s@]+$/ email regex
 
+
 	let tmp = {color:newColor,userId,userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/AddColor.' + extension;
+	let url = urlBase + '/AddContacts.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -179,15 +189,29 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
+	
+}
+
+function showContacts()
+{
+	document.getElementById("searchContact").style.display = "initial";
+	document.getElementById("displayAddContacts").style.display = "initial";
+	document.getElementById("doSearch").style.display = "initial";
+
+	document.getElementById("doContacts").style.display = "none";
+	document.getElementById("firstName").type = "hidden";
+	document.getElementById("lastName").type = "hidden";
+	document.getElementById("phone").type = "hidden";
+	document.getElementById("email").type = "hidden";
 }
 
 function searchContacts() 

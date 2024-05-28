@@ -14,7 +14,8 @@
             <a href="index.html">
                 <img src="images/Logo.png" alt="Citronauts logo" class="logo">
             </a>
-    
+
+            
             <a href="login.html">
                 <button type="button" id="loginButton" class="loginButton">Log in</button>
             </a>
@@ -23,5 +24,15 @@
                 <button type="button" id="registerButton" class="registerButton">Register</button>
             </a>
         </div>
+
+        <div class="contactsScreen">
+			<span id="title">Contacts</span>
+				<input type="text" id="searchText" placeholder="Search" /><br />
+			<span id="response"></span>
+			<button type="button" id="doSearch" class="buttons" onclick="searchContacts();"> Search </button>
+            <span id="colorSearchResult"></span>
+            <p id="colorList">
+            </p><br /><br />
+		</div>
     </body>
 </html>

@@ -102,7 +102,7 @@ function doRegister() {
 function searchContacts()
 {
 	let srch = document.getElementById("searchText").value;
-	document.getElementById("searchResult").innerHTML = "";
+	document.getElementById("contactSearchResult").innerHTML = "";
 	
 	let contactList = "";
 
@@ -120,7 +120,7 @@ function searchContacts()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("searchResult").innerHTML = "Contact(s) have been retrieved";
+				document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
 				for( let i=0; i<jsonObject.results.length; i++ )

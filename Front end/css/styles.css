@@ -184,3 +184,7 @@ select
     font-size: 0.75em;
     font-family: 'Ubuntu', sans-serif;
 }
+
+#contactSearchResult{
+    display: none;
+}

@@ -252,6 +252,10 @@ function searchContacts()
     document.getElementById("searchResult").innerHTML = "";
 
     let contactList = "";
+	var firstNameList = [];
+	var lastNameList = [];
+	var phoneList = [];
+	var emailList = [];
 
     let tmp = { search: srch, userID: userId };
     let jsonPayload = JSON.stringify(tmp);
@@ -270,14 +274,36 @@ function searchContacts()
 				//let jsonString = JSON.stringify(jsonObject);
 
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                    contactList += JSON.stringify(jsonObject.results[i].FirstName);
+                    
+					//commented code works, but doesn't have all elements broken down
+
+					/*contactList += JSON.stringify(jsonObject.results[i].FirstName);
 					contactList += JSON.stringify(jsonObject.results[i].LastName);
 					contactList += JSON.stringify(jsonObject.results[i].Phone);
 					contactList += JSON.stringify(jsonObject.results[i].Email);
 					contactList = contactList.replace(/"/g, ' ');
                     if (i < jsonObject.results.length - 1) {
                         contactList += "<br />\r\n";
-                    }
+                    }*/
+
+					firstNameList[i] = JSON.stringify(jsonObject.results[i].FirstName);
+					lastNameList[i] = JSON.stringify(jsonObject.results[i].LastName);
+					phoneList[i] = JSON.stringify(jsonObject.results[i].Phone);
+					emailList[i] = JSON.stringify(jsonObject.results[i].Email);
+					
+					firstNameList[i] = firstNameList[i].replace(/"/g, ' ');
+					lastNameList[i] = lastNameList[i].replace(/"/g, ' ');
+					phoneList[i] = phoneList[i].replace(/"/g, ' ');
+					emailList[i] = emailList[i].replace(/"/g, ' ');
+                    
+					contactList += firstNameList[i] + lastNameList[i] + phoneList[i] + emailList[i] + "<br />\r\n";
+
+					/*document.getElementsByTagName("p")[0].innerHTML = firstNameList[i];
+					document.getElementsByTagName("p")[0].innerHTML = lastNameList[i];
+					document.getElementsByTagName("p")[0].innerHTML = contactList[i];
+					document.getElementsByTagName("p")[0].innerHTML = contactList[i];
+					document.getElementsByTagName("p")[0].innerHTML = "<br />\r\n";*/
+
                 }
 
 				document.getElementsByTagName("p")[0].innerHTML = contactList;

@@ -267,14 +267,20 @@ function searchContacts()
                 document.getElementById("searchResult").innerHTML = "Contact(s) have been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
 
+				//let jsonString = JSON.stringify(jsonObject);
+
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                    contactList += jsonObject.results[i];
+                    contactList += JSON.stringify(jsonObject.results[i].FirstName);
+					contactList += JSON.stringify(jsonObject.results[i].LastName);
+					contactList += JSON.stringify(jsonObject.results[i].Phone);
+					contactList += JSON.stringify(jsonObject.results[i].Email);
+					contactList = contactList.replace(/"/g, ' ');
                     if (i < jsonObject.results.length - 1) {
                         contactList += "<br />\r\n";
                     }
                 }
 
-                document.getElementsByTagName("p")[0].innerHTML = contactList;
+				document.getElementsByTagName("p")[0].innerHTML = contactList;
             }
         };
         xhr.send(jsonPayload);

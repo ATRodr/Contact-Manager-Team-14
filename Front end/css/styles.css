@@ -255,12 +255,14 @@ body {
 {
     color: white;
     font-size: 2vw;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 #contactList 
 {
     color: white;
     font-size: 2vw;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 input[type="text"],

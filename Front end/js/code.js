@@ -4,6 +4,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+const ids = [];
 
 function doLogin() 
 {
@@ -235,6 +236,30 @@ function addContacts()
 	
 }
 
+function deleteContacts()
+{
+	let url = urlBase + '/DeleteContact.' + extension;
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				console.log("Contact has been deleted");
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("searchResult").innerHTML = err.message;
+	}
+}
+
 function showContacts()
 {
 	document.getElementById("firstName").value = "";
@@ -271,8 +296,6 @@ function searchContacts()
                 document.getElementById("searchResult").innerHTML = "Contact(s) have been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
 
-				//let jsonString = JSON.stringify(jsonObject);
-
                 for (let i = 0; i < jsonObject.results.length; i++) {
                     
 					//commented code works, but doesn't have all elements broken down
@@ -297,13 +320,6 @@ function searchContacts()
 					emailList[i] = emailList[i].replace(/"/g, ' ');
                     
 					contactList += firstNameList[i] + lastNameList[i] + phoneList[i] + emailList[i] + "<br />\r\n";
-
-					/*document.getElementsByTagName("p")[0].innerHTML = firstNameList[i];
-					document.getElementsByTagName("p")[0].innerHTML = lastNameList[i];
-					document.getElementsByTagName("p")[0].innerHTML = contactList[i];
-					document.getElementsByTagName("p")[0].innerHTML = contactList[i];
-					document.getElementsByTagName("p")[0].innerHTML = "<br />\r\n";*/
-
                 }
 
 				document.getElementsByTagName("p")[0].innerHTML = contactList;

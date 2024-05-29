@@ -148,14 +148,14 @@ body {
 }
 
 .loginScreen {
-    margin: 8% auto;
+    margin: 16vh auto;
     text-align: center;
     width: 50%;
     background-color: rgba(0, 0, 0, 0.8);
 }
 
 .registerScreen {
-    margin: 4% auto;
+    margin: 12vh auto;
     text-align: center;
     width: 50%;
     background-color: rgba(0, 0, 0, 0.8);
@@ -164,15 +164,17 @@ body {
 .contactsScreen 
 {
     top: 90px;
+    align-items: center;
     text-align: center;
-    height:auto;
-    width: 100%;
+    background-attachment: absolute;
+    min-height: calc(100vh - 90px);
     background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 1000px) {
     .contactsScreen 
     {
+        min-height: calc(100vh - 60px);
         top: 60px;
     }
 }
@@ -180,6 +182,7 @@ body {
 @media (max-width: 600px) {
     .contactsScreen 
     {
+        min-height: calc(100vh - 30px);
         top: 30px;
     }
 }
@@ -204,8 +207,8 @@ body {
 
 .buttons {
     text-align: center;
-    margin-bottom: 3%;
-    width: 30%;
+    margin-bottom: 4vh;
+    width: 15vw;
     color: white;
     font-size: 3vw;
     border-color: white;
@@ -217,15 +220,18 @@ body {
     border-color: rgba(255, 255, 255, 0.7);
 }
 
-#firstName {
+#firstName 
+{
     font-size: 2vw;
 }
 
-#lastName {
+#lastName 
+{
     font-size: 2vw;
 }
 
-#loginName {
+#loginName 
+{
     font-size: 2vw;
 }
 
@@ -258,11 +264,12 @@ body {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"] 
+{
     border-radius: 25px;
     text-align: center;
     width: 35%;
-    margin-bottom: 3%;
+    margin-bottom: 2.5vh;
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -270,10 +277,10 @@ input[type="password"] {
     display: inline-block;
     font-size: 6vw;
     font-weight: bolder;
-    width: 90%;
+    width: 100%;
     text-align: center;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
     font-family: 'Ubuntu', sans-serif;
     color: #ffffff;
 }
@@ -281,7 +288,7 @@ input[type="password"] {
 #response {
     display: inline-block;
     font-size:1.5vw;
-    margin-bottom: 3%;
+    margin-bottom: 3vh;
     width: 90%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
@@ -358,5 +365,43 @@ input[type="password"] {
 .logoutButton:hover {
     background-color: #e24400ca;
     color: #FFFFFF;
+    opacity: 50%;
+}
+
+.cancelButton 
+{
+    text-align: center;
+    margin-top: 1vh;
+    margin-right: 2.5vw;
+    width: 14vw;
+    font-size: 3vw;
+    background-color: transparent;
+    border-width: 1vw;
+    border-color: #ff0000;
+    color: white;
+}
+
+.cancelButton:hover
+{
+    border-color: #ff0000d0;
+    opacity: 50%;
+}
+
+.addContactButton
+{
+    text-align: center;
+    margin-top: 1vh;
+    margin-left: 2.5vw;
+    width: 14vw;
+    font-size: 3vw;
+    background-color: #2dd913;
+    border-width: 1vw;
+    border-color: #2dd913;
+    color: white;
+}
+
+.addContactButton:hover {
+    border-color: #2dd913bd;
+    background-color: #2dd913bd;
     opacity: 50%;
 }

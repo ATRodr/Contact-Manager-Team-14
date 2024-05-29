@@ -22,23 +22,23 @@
         </div>
 
         <div class="contactsScreen">
+            <span id="title">Contacts</span>
             <div id = "homeContactsScreen">
-                <span id="title">Contacts</span>
-			    <input type="text" id="searchContact" placeholder="Search" /><br />
+			    <input type="text" id="searchContact" placeholder="Search" /><br /><br />
                 <button type="button" id="doSearch" class="buttons" onclick="searchContacts();"> Search </button>
                 <button type="button" id="displayAddContacts" class="buttons" onclick="displayAddContacts();"> Add </button>
                 <br /><span id="searchResult"></span>
                 <br /><p id="contactList"></p>
             </div>
 
-            <div id = "addContactScreen">
-                <button type="button" id="doContacts" class="buttons" onclick="showContacts();" hidden> back </button>
-                <input type="hidden" id="firstName" placeholder="First name" /><br />
-			    <input type="hidden" id="lastName" placeholder="Last name" /><br />
-			    <input type="hidden" id="phone" placeholder="Phone Number" /><br />
-			    <input type="hidden" id="email" placeholder="Email" /><br />
-                <button type="button" id="addContact" class="buttons" onclick="addContacts();" hidden> Add contact </button>
-                <span id="contactAddResult">IADADHUIASHDUIASH</span>
+            <div id = "addContactScreen" style="display: none;">
+                <input type="text" id="firstName" placeholder="First name"><br />
+			    <input type="text" id="lastName" placeholder="Last name"/><br />
+			    <input type="text" id="phone" placeholder="XXX-XXX-XXXX"/><br />
+			    <input type="text" id="email" placeholder="name@email.com"/><br />
+                <span id="response"></span>
+                <button type="button" id="cancel" class="cancelButton" onclick="showContacts();"> Cancel </button>
+                <button type="button" id="addContact" class="addContactButton" onclick="addContacts();"> Add </button>
             </div>
 		</div>
     </body>

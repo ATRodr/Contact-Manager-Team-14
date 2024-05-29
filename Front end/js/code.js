@@ -175,16 +175,8 @@ function doLogout()
 
 function displayAddContacts()
 {
-	document.getElementById("searchContact").style.display = "none";
-	document.getElementById("displayAddContacts").style.display = "none";
-	document.getElementById("doSearch").style.display = "none";
-
-	document.getElementById("doContacts").style.display = "block";
-	document.getElementById("firstName").type = "show";
-	document.getElementById("lastName").type = "show";
-	document.getElementById("phone").type = "show";
-	document.getElementById("email").type = "show";
-	document.getElementById("addContact").style.display = "block";
+	document.getElementById("homeContactsScreen").style.display = "none";
+	document.getElementById("addContactScreen").style.display = "block";
 }
 
 function addContacts()
@@ -194,18 +186,30 @@ function addContacts()
 	let phone = document.getElementById("phone").value;
 	let email = document.getElementById("email").value;
 
+	if (firstName == "") {
+		document.getElementById("response").innerHTML = "Please input a first name";
+		return;
+	}
+
+	if (lastName == "") {
+		document.getElementById("response").innerHTML = "Please input a last name";
+		return;
+	}
+
 	if(!/^\d{3}\-\d{3}\-\d{4}$/.test(phone))
 	{
+		document.getElementById("response").innerHTML = "Phone number must be in the form XXX-XXX-XXXX";
 		return;
 	}
 
 	if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
 	{
+		document.getElementById("response").innerHTML = "Email must be in the form name@email.com";
 		return;
 	}
 
 
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email};
+	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email, userID:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContacts.' + extension;
@@ -219,7 +223,7 @@ function addContacts()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				showContacts();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -233,16 +237,13 @@ function addContacts()
 
 function showContacts()
 {
-	document.getElementById("searchContact").style.display = "initial";
-	document.getElementById("displayAddContacts").style.display = "initial";
-	document.getElementById("doSearch").style.display = "initial";
-
-	document.getElementById("doContacts").style.display = "none";
-	document.getElementById("firstName").type = "hidden";
-	document.getElementById("lastName").type = "hidden";
-	document.getElementById("phone").type = "hidden";
-	document.getElementById("email").type = "hidden";
-	document.getElementById("addContact").style.display = "none";
+	document.getElementById("firstName").value = "";
+	document.getElementById("lastName").value = "";
+	document.getElementById("phone").value = "";
+	document.getElementById("email").value = "";
+	document.getElementById("response").innerHTML = "";
+	document.getElementById("homeContactsScreen").style.display = "initial";
+	document.getElementById("addContactScreen").style.display = "none"
 }
 
 function searchContacts() 

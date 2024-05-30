@@ -431,7 +431,7 @@ function editContact(row)
 	document.getElementById("editButton").style.display = "inline-block";
 	document.getElementById("confirmButton").style.display = "none";
 
-	let tmp = {firstName: firstName, lastName: lastName, phone: phone, email: email, UserID: userId, contactID: contactID}
+	let tmp = {firstName: firstName, lastName: lastName, phone: phone, email: email, userID: userId, contactID: contactID}
 
 	let jsonPayload = JSON.stringify(tmp);
 
@@ -443,6 +443,13 @@ function editContact(row)
 
 	try 
 	{
+		xhr.onreadystatechange = function ()
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				console.log("GOOD");
+			}
+		}
 		xhr.send(jsonPayload);
 	}
 	catch (err) {

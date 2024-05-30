@@ -1,71 +1,71 @@
 <?php
 
-	$inData = getRequestInfo();
-	
-	$searchResults = "";
-	$searchCount = 0;
+$inData = getRequestInfo();
 
-	$conn = new mysqli("localhost", "Master", "Password123", "ContactManager");	
-	if ($conn->connect_error) 
-	{
-		returnWithError( $conn->connect_error );
-	} 
-	else
-	{
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR Phone LIKE ? OR Email LIKE ?) AND UserID = ?");
-		$firstName = "%" . $inData["search"] . "%";
-		$lastName = "%" . $inData["search"] . "%";
-		$phone = "%" . $inData["search"] . "%";
-		$email = "%" . $inData["search"] . "%";
-		$stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $inData["userID"]);
-		$stmt->execute();
-		
-		$result = $stmt->get_result();
-		
-		while($row = $result->fetch_assoc())
-		{
-			if( $searchCount > 0 )
-			{
-				$searchResults .= ",";
-			}
-			$searchCount++;
-			$searchResults .= '{"FirstName":"' . $row["FirstName"] . '","LastName":"' . $row["LastName"] . '", "Phone":"' . $row["Phone"] . '", "Email":"' . $row["Email"] . '" }';
-		}
-		
-		if( $searchCount == 0 )
-		{
-			returnWithError( "No Records Found" );
-		}
-		else
-		{
-			returnWithInfo( $searchResults );
-		}
-		
-		$stmt->close();
-		$conn->close();
-	}
+$searchResults = "";
+$searchCount = 0;
 
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
+$conn = new mysqli("localhost", "Master", "Password123", "ContactManager");    
+if ($conn->connect_error) 
+{
+    returnWithError($conn->connect_error);
+} 
+else
+{
+    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR Phone LIKE ? OR Email LIKE ?) AND UserID = ?");
+    $firstName = "%" . $inData["search"] . "%";
+    $lastName = "%" . $inData["search"] . "%";
+    $phone = "%" . $inData["search"] . "%";
+    $email = "%" . $inData["search"] . "%";
+    $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $inData["userID"]);
+    $stmt->execute();
+    
+    $result = $stmt->get_result();
+    
+    while($row = $result->fetch_assoc())
+    {
+        if($searchCount > 0)
+        {
+            $searchResults .= ",";
+        }
+        $searchCount++;
+        $searchResults .= '{"ID":' . $row["ID"] . ',"FirstName":"' . $row["FirstName"] . '","LastName":"' . $row["LastName"] . '", "Phone":"' . $row["Phone"] . '", "Email":"' . $row["Email"] . '"}';
+    }
+    
+    if($searchCount == 0)
+    {
+        returnWithError("No Records Found");
+    }
+    else
+    {
+        returnWithInfo($searchResults);
+    }
+    
+    $stmt->close();
+    $conn->close();
+}
 
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-	
-	function returnWithError( $err )
-	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
-	function returnWithInfo( $searchResults )
-	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
+function getRequestInfo()
+{
+    return json_decode(file_get_contents('php://input'), true);
+}
+
+function sendResultInfoAsJson($obj)
+{
+    header('Content-type: application/json');
+    echo $obj;
+}
+
+function returnWithError($err)
+{
+    $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+    sendResultInfoAsJson($retValue);
+}
+
+function returnWithInfo($searchResults)
+{
+    $retValue = '{"results":[' . $searchResults . '],"error":""}';
+    sendResultInfoAsJson($retValue);
+}
+
 ?>

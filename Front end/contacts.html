@@ -27,9 +27,16 @@
 			    <input type="text" id="searchContact" placeholder="Search" /><br /><br />
                 <button type="button" id="doSearch" class="buttons" onclick="searchContacts();"> Search </button>
                 <button type="button" id="displayAddContacts" class="buttons" onclick="displayAddContacts();"> Add </button>
-                <button type="button" id="deleteContacts" class="buttons" onclick="deleteContacts();"> Delete </button>
-                <br /><span id="searchResult"></span>
-                <br /><p id="contactList"></p>
+                <br /><span id="searchResponse"></span><br />
+                <table id="contactList" style="display: none;">
+                    <tr bgcolor="grey">
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                </table><br /><br />
             </div>
 
             <div id = "addContactScreen" style="display: none;">

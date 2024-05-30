@@ -340,7 +340,7 @@ function searchContacts()
 					cell.appendChild(deleteButton);
 
 					let editButton = document.createElement("button");
-					editButton.id = "editButton";
+					editButton.id = "editButton" + (i + 1);
 					editButton.onclick = function() {startEditContact(row.rowIndex)};
 					let editIcon = document.createElement("img")
 					editIcon.src = "/images/Edit.png";
@@ -351,7 +351,7 @@ function searchContacts()
 
 					let confirmButton = document.createElement("button");
 					confirmButton.style.display = "none";
-					confirmButton.id = "confirmButton";
+					confirmButton.id = "confirmButton" + (i + 1);
 					confirmButton.onclick = function () { editContact(row.rowIndex) };
 					let confirmIcon = document.createElement("img")
 					confirmIcon.src = "/images/Confirm.png";
@@ -403,8 +403,8 @@ function deleteContact(row)
 
 function startEditContact(row)
 {
-	document.getElementById("editButton").style.display = "none";
-	document.getElementById("confirmButton").style.display = "inline-block";
+	document.getElementById("editButton" + row).style.display = "none";
+	document.getElementById("confirmButton" + row).style.display = "inline-block";
 	let firstName = document.getElementById("contactList").rows[row].cells[0].innerHTML;
 	let lastName = document.getElementById("contactList").rows[row].cells[1].innerHTML;
 	let phone = document.getElementById("contactList").rows[row].cells[2].innerHTML;
@@ -428,8 +428,8 @@ function editContact(row)
 	document.getElementById("contactList").rows[row].cells[2].innerHTML = phone;
 	document.getElementById("contactList").rows[row].cells[3].innerHTML = email;
 
-	document.getElementById("editButton").style.display = "inline-block";
-	document.getElementById("confirmButton").style.display = "none";
+	document.getElementById("editButton" + row).style.display = "inline-block";
+	document.getElementById("confirmButton" + row).style.display = "none";
 
 	let tmp = {firstName: firstName, lastName: lastName, phone: phone, email: email, userID: userId, contactID: contactID}
 
